@@ -4,9 +4,9 @@ from itchat.content import *
 from docx import Document
 from docx.shared import Inches
 
-@itchat.msg_register(TEXT, isGroupChat=True)
+@itchat.msg_register(itchat.content.TEXT, isGroupChat=True)
 def store_msg(msg):
-    path = "rixinbiji/"
+    path = "日新笔记/"
     lev = 1
     # 找到对应群
     # 获取群成员姓名ID信息对照表
@@ -21,6 +21,11 @@ def store_msg(msg):
             for txt in text[1:]:
                 document.add_paragraph(txt)
             document.add_paragraph('\n')
+
+def fromGroup(groupName):
+
+
+
 
 def fileterEmoji(contents):
     content = copy.deepcopy(contents)
@@ -39,9 +44,15 @@ if __name__ == "__main__":
     # 如果是来自于希望的群聊
         # 判断发送的消息中是否含有希望的关键字
             # 如果包含希望的关键字
-                # 判断文件夹内
+                # 获取发送人信息
+                # 判断文件夹内是否有该发送人的文档
+                # 如果有
+                    # 追加文本到文档内
+                # 如果没有
+                    # 创建docx文档
+                    # 追加文本到文档内
             # 如果不包含希望的关键字：重新监控消息
-    # 如果不是来自于希望的群聊
+    # 如果不是来自于希望的群聊：重新监控消息
     document = Document()
     document.add_heading()
 
